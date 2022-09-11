@@ -1,0 +1,21 @@
+[submodule "dependencies/eigen"]
+	path = dependencies/eigen
+	url = git@github.com:sailing-innocent/eigen.git
+[submodule "dependencies/DLSS"]
+	path = dependencies/DLSS
+	url = git@github.com:sailing-innocent/DLSS.git
+[submodule "dependencies/imgui"]
+	path = dependencies/imgui
+	url = git@github.com:sailing-innocent/imgui.git
+[submodule "dependencies/args"]
+	path = dependencies/args
+	url = git@github.com:sailing-innocent/args.git
+[submodule "dependencies/tiny-cuda-nn"]
+	path = dependencies/tiny-cuda-nn
+	url = git@github.com:sailing-innocent/tiny-cuda-nn.git
+[submodule "dependencies/glfw"]
+	path = dependencies/glfw
+	url = git@github.com:sailing-innocent/glfw.git
+[submodule "dependencies/pybind11"]
+	path = dependencies/pybind11
+	url = git@github.com:sailing-innocent/pybind11.git
