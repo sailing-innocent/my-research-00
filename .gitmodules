@@ -19,3 +19,6 @@
 [submodule "dependencies/pybind11"]
 	path = dependencies/pybind11
 	url = git@github.com:sailing-innocent/pybind11.git
+[submodule "dependencies/filesystem"]
+	path = dependencies/filesystem
+	url = git@github.com:gulrak/filesystem.git
