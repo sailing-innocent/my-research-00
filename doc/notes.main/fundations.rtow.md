@@ -133,3 +133,14 @@ shared_ptr is a pointer to some allocated type, with reference-counting semantic
 Once the count goes to zero, the object is deleted.
 
 included with `<memory> header`
+
+
+## 7. Antialiasing
+
+We abstract camera class a bit so we can make a cooler camera later
+
+### Some Ramdom Number Utilities
+
+`<cstdlib> rand()`
+
+### Generating Pixels with Multiple Samples
