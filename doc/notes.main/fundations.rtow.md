@@ -144,3 +144,53 @@ We abstract camera class a bit so we can make a cooler camera later
 `<cstdlib> rand()`
 
 ### Generating Pixels with Multiple Samples
+
+## 8. Diffuse Materials
+
+Now that we have objects and multiple rays per pixel, we can make some realisitic looking materials.
+
+define the max depth and diffuse through it.
+
+At this step, the CPU is not that capable for rendering. We might consider some GPU acceleration tools.
+
+```cpp
+if (world.hit(r, 0, infinity, rec)) {
+        point3 target = rec.p + rec.normal + random_in_unit_sphere();
+        return 0.5 * ray_color(ray(rec.p, target - rec.p), world, depth-1);
+    }
+```
+
+Now our sphere only absorb half of energy on each bounce
+
+
+gamma corrected, meaning the 0 to 1 values have some transform before being stored to byte.
+
+### Fixing Shadow Acne
+
+Some of the reflected rays hit the object they are reflecting off of notn at exactly t = 0, but this might give t = -0.000001 or something. 
+
+so we can ignore values that are very near to 0
+
+### True Lambertian Reflection
+
+later we produces random points in the unit ball offset along the surface normal. But in reality, the distribution is not smooth.
+
+very high in normal but low in gaze.
+
+This distribution scales by $cos^3(\phi)$ where angle from the normal.
+
+Lambertian distribution, which has a distribution of $\cos{\phi}$  True Lambertian has the probability higher for ray scattering close to normal. but the distribution is more uniform.
+
+
+### An Alternative Diffuse Formulation
+
+proven to be an incorrect approximation of ideal Lambertian diffuse.
+
+A more intuitive approach is to have a uniform scatter direction for all angles away from the hit point.
+
+without normal
+
+You are encouraged to switch between the different diffuse renderers presented here.
+
+
+## Metal
