@@ -194,3 +194,45 @@ You are encouraged to switch between the different diffuse renderers presented h
 
 
 ## Metal
+
+If we want different objects to have different materials, we have a design decision. 
+
+### Modeling Light Scatter and Reflectance
+
+
+### Fuzzy reflection
+
+we can also randomize the reflected direction by using a small sphere and choosing a new endpoint for the ray
+
+## 10 Dieletrics
+
+Clear Materials such as water, and diamonds are dielectrics. When a light ray hits them, it splits into a reflected ray and refracted ray.
+
+### Snell's Law
+
+The refraction is described as Snell's law
+
+$$
+\eta \sin{\theta} = \eta'\sin{\theta'}
+$$
+
+refractive indices, air = 1.0 and glass=1.3-1.7
+
+构建左方向单位向量
+
+$$
+\frac{\mathbf{R}+\cos{\theta}\mathbf{n}}{\sin{\theta}}
+$$
+
+然后就很容易推导了
+
+### Total Internal Reflection
+
+That difinitely doesn't look right.
+
+### Schlick Approximation
+
+Real glass has reflectivity that varies with angles, but almost everybody uses an cheap and surprisingly accurate polynomial approximation
+
+
+## 11 Positionable Camera
