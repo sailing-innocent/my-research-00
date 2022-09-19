@@ -18,6 +18,7 @@ I strongly suggest everyone get started by this tutorial. It help you start to c
 - Dielectrics
 - Positionalble Camera
 - Defocus Blur
+- Final Step
 
 ## Overview
 

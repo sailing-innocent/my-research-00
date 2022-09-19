@@ -15,3 +15,18 @@
 ## 第一阶段：复现
 
 这一阶段不要总想着弄出什么新的东西额，而是着重于各种工具的熟悉和论文的复现工作。既要用现有的数据集，还需要能够借用手机等工具现场收集（比如构建一个app来进行录像通信）
+
+### Ray Tracing One Weekend
+
+[RayTracing/raytracing.github.io: Main Web Site (Online Books)](https://github.com/RayTracing/raytracing.github.io/)
+
+这个教程真的非常nice，我愿称之为最好的图形学入门练习。
+
+1. Lights — You can do this explicitly, by sending shadow rays to lights, or it can be done implicitly by making some objects emit light, biasing scattered rays toward them, and then downweighting those rays to cancel out the bias. Both work. I am in the minority in favoring the latter approach.
+2. Triangles — Most cool models are in triangle form. The model I/O is the worst and almost everybody tries to get somebody else’s code to do this.
+3. Surface Textures — This lets you paste images on like wall paper. Pretty easy and a good thing to do.
+4. Solid textures — Ken Perlin has his code online. Andrew Kensler has some very cool info at his blog.
+5. Volumes and Media — Cool stuff and will challenge your software architecture. I favor making volumes have the hittable interface and probabilistically have intersections based on density. Your rendering code doesn’t even have to know it has volumes with that method.
+6. Parallelism — Run **N** copies of your code on **N** cores with different random seeds. Average the **N** runs. This averaging can also be done hierarchically where **N**/**2** pairs can be averaged to get **N**/**4** images, and pairs of those can be averaged. That method of parallelism should extend well into the thousands of cores with very little coding.
+
+在完成之后，我需要从这个项目中写出自己的光栅渲染器
