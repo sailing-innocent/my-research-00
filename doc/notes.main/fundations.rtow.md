@@ -236,3 +236,20 @@ Real glass has reflectivity that varies with angles, but almost everybody uses a
 
 
 ## 11 Positionable Camera
+
+Cameras, like dielectrics, are a pain to debug. 
+
+
+### Camera Viewing Geometry
+
+keep the rays comming from the origin and heading to the z = -1 plane}
+
+### Positioning and Orienting the Camera
+
+To get an arbitrary viewpoint.
+
+- lookfrom
+- lookat
+- viewup: vup, v, w
+
+## Defocus Blur
