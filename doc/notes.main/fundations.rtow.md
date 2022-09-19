@@ -114,7 +114,7 @@ by using half_b to replace b
 
 create a abstract class "hittable"
 
-and derived a sphere class from hittable 
+and derived a sphere class from hittable
 
 ### Front Faces Versus Back Faces
 
@@ -133,7 +133,6 @@ shared_ptr is a pointer to some allocated type, with reference-counting semantic
 Once the count goes to zero, the object is deleted.
 
 included with `<memory> header`
-
 
 ## 7. Antialiasing
 
@@ -162,12 +161,11 @@ if (world.hit(r, 0, infinity, rec)) {
 
 Now our sphere only absorb half of energy on each bounce
 
-
 gamma corrected, meaning the 0 to 1 values have some transform before being stored to byte.
 
 ### Fixing Shadow Acne
 
-Some of the reflected rays hit the object they are reflecting off of notn at exactly t = 0, but this might give t = -0.000001 or something. 
+Some of the reflected rays hit the object they are reflecting off of notn at exactly t = 0, but this might give t = -0.000001 or something.
 
 so we can ignore values that are very near to 0
 
@@ -181,7 +179,6 @@ This distribution scales by $cos^3(\phi)$ where angle from the normal.
 
 Lambertian distribution, which has a distribution of $\cos{\phi}$  True Lambertian has the probability higher for ray scattering close to normal. but the distribution is more uniform.
 
-
 ### An Alternative Diffuse Formulation
 
 proven to be an incorrect approximation of ideal Lambertian diffuse.
@@ -192,13 +189,11 @@ without normal
 
 You are encouraged to switch between the different diffuse renderers presented here.
 
-
 ## Metal
 
-If we want different objects to have different materials, we have a design decision. 
+If we want different objects to have different materials, we have a design decision.
 
 ### Modeling Light Scatter and Reflectance
-
 
 ### Fuzzy reflection
 
@@ -234,11 +229,9 @@ That difinitely doesn't look right.
 
 Real glass has reflectivity that varies with angles, but almost everybody uses an cheap and surprisingly accurate polynomial approximation
 
-
 ## 11 Positionable Camera
 
-Cameras, like dielectrics, are a pain to debug. 
-
+Cameras, like dielectrics, are a pain to debug.
 
 ### Camera Viewing Geometry
 
@@ -253,3 +246,22 @@ To get an arbitrary viewpoint.
 - viewup: vup, v, w
 
 ## Defocus Blur
+
+FINAL FEATURE!
+
+all the photographers will call it "depth of field" (景深？)
+
+- focal length: distance between the projection point and the image plane
+- focus distance: the outsider distance where can get best focus
+
+In a physical camera, the focus distance is controlled by the distance between the lens and film.
+
+### A Thin Lens Approximation
+
+A real camera has a complicated compound lens.
+
+For our code we cound simulate the orderL sensor, then len, then aperture.
+
+### Generating Sample Rays
+
+遇到了一个奇怪的bug，看了半天原来是自己手贱把类中的u, v, w写了个auto，也就是根本就是零向量带入运算的，难怪出来的结果一点blur都没
