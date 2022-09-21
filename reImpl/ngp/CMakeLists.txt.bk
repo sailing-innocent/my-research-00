@@ -1,0 +1,30 @@
+cmake_minimum_required(VERSION 3.18)
+
+project(ngp)
+
+###############################################################################
+# CUDA compiler setup
+###############################################################################
+
+set(CMAKE_CUDA_STANDARD 14)
+set(CMAKE_CUDA_STANDARD_REQUIRED ON)
+set(CMAKE_CUDA_EXTENSIONS OFF)
+set(CUDA_LINK_LIBRARIES_KEYWORD PUBLIC)
+
+include(FindCUDA/select_compute_arch)
+CUDA_DETECT_INSTALLED_GPUS(INSTALLED_GPU_CCS_1)
+string(STRIP "${INSTALLED_GPU_CCS_1}" INSTALLED_GPU_CCS_2)
+string(REPLACE " " ";" INSTALLED_GPU_CCS_3 "${INSTALLED_GPU_CCS_2}")
+string(REPLACE "." "" CUDA_ARCH_LIST "${INSTALLED_GPU_CCS_3}")
+
+message(WARNING ${CUDA_ARCH_LIST})
+message(STATUS "Targeting GPU architectures: ${CMAKE_CUDA_ARCHITECTURES}")
+
+message(STATUS "COMPIER: ${CMAKE_CUDA_COMPILER_ID} ${CMAKE_CUDA_COMPILER_VERSION}")
+if(CMAKE_CUDA_COMPILER_LOADED) # CUDA as a language
+    if(CMAKE_CUDA_COMPILER_ID STREQUAL "NVIDIA"
+        AND CMAKE_CUDA_COMPILER_VERSION MATCHES "^([0-9]+\\.[0-9]+)")
+        set(CUDA_VERSION "${CMAKE_MATCH_1}")
+    endif()
+endif()
+  

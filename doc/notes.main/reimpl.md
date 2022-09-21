@@ -8,3 +8,5 @@ Being able to duplicate published research results is an important process of co
 
 this site contains the data of all papers in 
 
+## 基本模式
+
