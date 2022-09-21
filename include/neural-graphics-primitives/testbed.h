@@ -11,6 +11,27 @@
 
 #pragma once
 
+// TOOLS
+// adam_optimizer
+// camera_path
+// common
+// discrete_distribution
+// nerf
+// nerf_loader
+// render_buffer
+// sdf
+// share_queue
+// trainable_buffer
+
+// DEPS
+// cuda_graph
+// random
+
+// json
+// path
+// pybind
+// thread
+
 struct GLFWwindow;
 
 #include <neural-graphics-primitives/common.h>
@@ -27,7 +48,7 @@ template <typename T, typename PARAMS_T, typename COMPUTE_T> class Trainer;
 template <uint32_t N_DIMS, uint32_t RANK, typename T> class TrainableBuffer;
 TCNN_NAMESPACE_END
 
-RES_NAMESPACE_BEGIN
+NGP_NAMESPACE_BEGIN
 
 template <typename T> class NerfNetwork;
 class TriangleOctree;
@@ -37,57 +58,14 @@ class GLTexture;
 
 class Testbed {
 public:
-    Testbed();
+    Testbed(ETestbedMode mode);
     ~Testbed();
-    void load_training_data(const std::string& data_path);
-    void clear_training_data();
+    void init_window(int resw, int resh, bool hidden, bool second_window);
+    Eigen::Vector2i m_window_res = Eigen::Vector2i::Constant(0);
+    GLFWwindow* m_glfw_window = nullptr;
+    ETestbedMode m_testbed_mode = ETestbedMode::Sdf;
+};
 
-    using distance_fun_t = std::function<void(uint32_t, const tcnn::GPUMemory<Eigen::Vector3f>&, tcnn::GPUMemory<float>&, cudaStream_t)>;
+void glfw_error_callback(int error, const char* description);
 
-    class SphereTracer {
-    public:
-        SphereTracer(): m_hit_counter(1), m_alive_counter(1) {}
-
-        void init_rays_from_camera(
-            uint32_t spp,
-        );
-        // void init_rays_from_data(uint32_t n_elements, const RaysSdfSoa& data)
-        uint32_t trace_bvh();
-        uint32_t trace();
-        void enlarge(size_t n_elements);
-
-    private:
-        uint32_t m_n_rays_initialized = 0;
-    };
-
-    class NerfTracer {};
-
-    class FiniteDifferenceNormalsApproximator {};
-
-    struct NetworkDims {
-        uint32_t n_input;
-        uint32_t n_output;
-        uint32_t n_pos;
-    };
-
-    NetworkDims network_dims_volume() const;
-    NetworkDims network_dims_nerf() const;
-
-    void render_volume();
-    void train_volume();
-    void training_prep_volume()
-    void load_volume();
-
-    void render_nerf();
-    void render_image();
-    void render_frame();
-
-    void reload_network_from_file()
-
-    void reset_network();
-    void create_empty_nerf_dataset();
-    void load_nerf();
-    void load_nerf_post();
-}
-
-RES_NAMESPACE_END
+NGP_NAMESPACE_END

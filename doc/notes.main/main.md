@@ -30,3 +30,9 @@
 6. Parallelism — Run **N** copies of your code on **N** cores with different random seeds. Average the **N** runs. This averaging can also be done hierarchically where **N**/**2** pairs can be averaged to get **N**/**4** images, and pairs of those can be averaged. That method of parallelism should extend well into the thousands of cores with very little coding.
 
 在完成之后，我需要从这个项目中写出自己的光栅渲染器
+
+我的整体研究过程就是：首先在reImpl中复现，然后在sail中重写进我自己的框架，最后提出想法，测试和研究。
+
+### instant-ngp
+
+在经过了之前的铺垫之后，我终于可以开始写我自己的ngp了

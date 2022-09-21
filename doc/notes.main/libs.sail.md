@@ -6,7 +6,7 @@ SAIL can be used for:
 
 - algorithm update
 - idea testing
-- data visualisingv
+- data visualisation
 
 
 提供可视化功能
@@ -30,3 +30,8 @@ communi: io & communication library
 data: data storage, sync and anlaysis library
 
 algo: algorithm and data strcuture library
+
+## TESTING
+
+sail is a pure utility library and will not provide with any executable. Thus we can use /test to execute the unit test.
+
