@@ -28,3 +28,6 @@
 [submodule "dependencies/imguizmo"]
 	path = dependencies/imguizmo
 	url = git@github-si:sailing-innocent/ImGuizmo.git
+[submodule "dependencies/cutlass"]
+	path = dependencies/cutlass
+	url = git@github.com:sailing-innocent/cutlass.git
