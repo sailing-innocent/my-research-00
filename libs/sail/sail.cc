@@ -1,3 +1,5 @@
-namespace sail {
-    int add(int a, int b) { return a + b;}
-}
+#include "sail/sail.h"
+
+SAIL_NAMESPACE_BEGIN
+
+SAIL_NAMESPACE_END

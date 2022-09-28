@@ -122,8 +122,29 @@ as mensioned before, the number of blocks in a single launch is limited, and the
 
 After each threads finishes its work at the current index, we need to increment each of them by the total number of threads running in the grid.
 
+//TODO GPU ripple example
+
 ### 5.3 Shared Memory and Synchronization
 
 The CUDA C compiler creates a copy of variable for each block that you launch ont he GPU. Every thread in that block shares the memory.
 
-97/311
+`__share__ float cache[threadsPerBlock]`
+to store each threads' running sum
+
+example dot product:
+
+## Chapter 6 Constant Memory and Events
+
+## Chapter 7 Texture Memory
+
+## Chapter 8 Graphics Interoperability
+
+## Chapter 9 Atomics
+
+## Chapter 10 Streams
+
+## Chapter 11 CUDA C on Multiple GPUs
+
+## Chapter 12 Final Cutdown
+
+## Appendix: Advanced Atomics

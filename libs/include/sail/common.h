@@ -11,6 +11,17 @@
 
 #pragma once
 
+#ifndef SAIL_COMMON
+#define SAIL_COMMON
+
+#include <iostream>
+#include <vector>
+
 #define SAIL_NAMESPACE_BEGIN namespace sail {
 #define SAIL_NAMESPACE_END }
+
+#define IMAX(a,b) (a>b?a:b)
+#define IMIN(a,b) (a<b?a:b)
+
+#endif
 
