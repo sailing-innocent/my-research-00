@@ -9,7 +9,7 @@ set(GLAD_SOURCE "E:/libs/glad/src/glad.c")
 
 list(APPEND LEARN_SOURCE
     ${GLAD_SOURCE}
-    main.cc
+    hello_triangle.cc
 )
 
 list(APPEND LEARN_INCLUDE_DIR 
