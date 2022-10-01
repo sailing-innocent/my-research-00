@@ -14,6 +14,7 @@ using namespace tcnn;
 // namespace fs = ::filesystem;
 
 int main(int argc, char** argv) {
+    cout << "Hello" << endl;
     // parsers
     try {
         // mode
@@ -46,6 +47,7 @@ int main(int argc, char** argv) {
         // }
     } catch (const exception& e) {
         // error log
+        cerr << "CATCH ERROR" <<  endl;
         return 1;
     }
 }

@@ -79,6 +79,8 @@ void Testbed::init_window(int resw, int resh, bool hidden, bool second_window)
     }
     // OTHER DEBUGGING
 
+    std::cout << "init window: " << title << std::endl;
+
     glfwSwapInterval(0); // Disable vsync
 
 }

@@ -53,23 +53,21 @@ set(CMAKE_CUDA_RUNTIME_LIBRARY Shared)
 
 if(MSVC)
     list(APPEND CUDA_NVCC_FLAGS "-Xcompiler=-bigobj")
-    list(APPEND CUDA_NVCC_FLAGS "-Xcompiler=/wd 4819")
 else()
 endif()
 
 list(APPEND CUDA_NVCC_FLAGS "--extended-lambda")
 list(APPEND CUDA_NVCC_FLAGS "--expt-relaxed-constexpr")
+
 # Dependencies
 
-# set(TCNN_BUILD_BENCHMARK OFF)
-# set(TCNN_BUILD_EXAMPLES OFF)
-# add_subdirectory("${RESEARCH_ROOT_DIR}/dependencies/tiny-cuda-nn" "tiny-cuda-nn")
+set(TCNN_BUILD_BENCHMARK OFF)
+set(TCNN_BUILD_EXAMPLES OFF)
+add_subdirectory("${RESEARCH_ROOT_DIR}/dependencies/tiny-cuda-nn" "tiny-cuda-nn")
 
-list(APPEND NGP_LINK_DIRECTORIES "${RESEARCH_ROOT_DIR}/dependencies/tiny-cuda-nn/build/Debug")
-list(APPEND NGP_LIBRARIES "tiny-cuda-nn")
+# list(APPEND NGP_LINK_DIRECTORIES "${RESEARCH_ROOT_DIR}/dependencies/tiny-cuda-nn/build")
 
-# set(CMAKE_CUDA_ARCHITECTURES ${TCNN_CUDA_ARCHITECTURES})
-set(CMAKE_CUDA_ARCHITECTURES 86)
+set(CMAKE_CUDA_ARCHITECTURES ${TCNN_CUDA_ARCHITECTURES})
 # message("NOW CUDA: ${TCNN_CUDA_ARCHITECTURES}")
 
 # set(NGP_BUILD_WITH_GUI OFF)
@@ -137,16 +135,7 @@ if (NGP_BUILD_WITH_GUI)
     list(APPEND NGP_DEFINITIONS -DNGP_GUI)
 endif(NGP_BUILD_WITH_GUI)
 
-list(APPEND TCNN_INCLUDE_DIR
-    "${RESEARCH_ROOT_DIR}/dependencies/tiny-cuda-nn/include"
-    "${RESEARCH_ROOT_DIR}/dependencies/tiny-cuda-nn/dependencies"
-    "${RESEARCH_ROOT_DIR}/dependencies/tiny-cuda-nn/dependencies/cutlass/include"
-    "${RESEARCH_ROOT_DIR}/dependencies/tiny-cuda-nn/dependencies/cutlass/tools/util/include"
-    "${RESEARCH_ROOT_DIR}/dependencies/tiny-cuda-nn/dependencies/fmt/include"
-)
-
 list(APPEND NGP_INCLUDE_DIRECTORIES
-    "${TCNN_INCLUDE_DIR}"
     "${RESEARCH_ROOT_DIR}/dependencies"
     "${RESEARCH_ROOT_DIR}/dependencies/eigen"
     # "${RESEARCH_ROOT_DIR}/dependencies/filesystem"
