@@ -137,6 +137,12 @@ example dot product:
 
 ## Chapter 7 Texture Memory
 
+Texture用于存储只读的纹理，可以是一维或者二维，创建TextureObject，核心类型位cudaTextureObject_t需要包含头文件<texture_types.h>
+
+Surface与Texture不同在于Surface可读可写，核心类型为cudaTextureObject_t
+
+从而可以通过一些方式将OpenGL或者DirectX中注册的Resource空间与Cuda中的Surface空间建立映射，从而不经过CPU进行显存协作。
+
 ## Chapter 8 Graphics Interoperability
 
 ## Chapter 9 Atomics
@@ -148,3 +154,4 @@ example dot product:
 ## Chapter 12 Final Cutdown
 
 ## Appendix: Advanced Atomics
+
