@@ -17,6 +17,7 @@
 #   include <imgui/backends/imgui_impl_glfw.h>
 #   include <imgui/backends/imgui_impl_opengl3.h>
 #   include <imguizmo/ImGuizmo.h>
+#   include <stb_image/stb_image.h>
 #   ifdef _WIN32
 #       include <GL/gl3w.h>
 #   else
@@ -37,10 +38,79 @@ using namespace tcnn;
 
 NGP_NAMESPACE_BEGIN
 
+bool Testbed::frame() {
+#ifdef NGP_GUI
+    // init window
+    if (m_render_window) {
+        if (!begin_frame_and_handle_user_input()) {
+            return false;
+        }
+    }
+#endif
+
+    // Render against the trained neural network
+    // we can skip rendering if the scene camera doesn't change
+    // uint32_t n_to_skip = m_train ? tcnn::clamp(m_training_step / 16u, 15u, 255u) : 0;
+    /*
+    try {
+        while (true) {
+            // (*m_task_queue.tryPop())();
+        }
+    } catch (SharedQueueEmptyException&) {}
+    */
+    // train and render
+
+#ifdef NGP_GUI 
+    if (m_render_window) {
+        if (m_gui_redraw) {
+            // gather gui
+        }
+        // draw_gui()
+        m_gui_redraw = false;
+        m_last_gui_draw_time_point = std::chrono::steady_clock::now();
+    }
+
+    // ImGui::EndFrame
+#endif 
+    return true;
+}
+
+bool Testbed::begin_frame_and_handle_user_input() {
+    bool ESCAPE_STATE = false;
+    if (glfwWindowShouldClose(m_glfw_window) || ESCAPE_STATE) {
+        destroy_window();
+        return false;
+    }
+
+    {
+        // update time
+        auto now = std::chrono::steady_clock::now();
+        auto elapsed = now - m_last_frame_time_point;
+        m_last_frame_time_point = now;
+        m_frame_ms.update(std::chrono::duration<float, std::milli>(elapsed).count());
+    }
+
+    glfwPollEvents();
+    glfwGetFramebufferSize(m_glfw_window, &m_window_res.x(), &m_window_res.y());
+
+    // IMGUI
+
+    // NeRF special process
+
+    // Keyboard Events
+    // mouse_drag
+
+    return true;
+}
+
+// merge_parent_network_config
+// ends with
+// load trining data
+
 Testbed::Testbed(ETestbedMode mode)
 : m_testbed_mode(mode)
 {
-    // config
+    std::cout << "Testbed Init: " << std::endl;
 }
 
 Testbed::~Testbed() {
@@ -49,10 +119,14 @@ Testbed::~Testbed() {
 
 void Testbed::init_window(int resw, int resh, bool hidden, bool second_window)
 {
+#ifndef NGP_GUI
+	throw std::runtime_error{"init_window failed: NGP was built without GUI support"};
+#else // define NGP_GUI
+    std::cout << "Init Window" << std::endl; 
     // if not def NGP_GUI throw error
     m_window_res = { resw, resh };
     // glfw set error callback
-    glfwSetErrorCallback(glfw_error_callback);
+    // glfwSetErrorCallback(glfw_error_callback);
     // glfw init
     if (!glfwInit()) {
         throw std::runtime_error{"GLFW cound not be initialized."};
@@ -69,21 +143,73 @@ void Testbed::init_window(int resw, int resh, bool hidden, bool second_window)
     std::string title = "SIRI: Neural Graphics Primitives (";
     switch (m_testbed_mode) {
         case ETestbedMode::Image: title += "Image"; break;
+        case ETestbedMode::Nerf: title += "Nerf"; break;
+        default: title += "NOTITLE" ; break;
     }
     title += ")";
-    
     // Create Window
-    // m_glfw_window = glfwCreateWindow(m_window_res.x(), m_window_res.y(), title.c_str(), NULL, NULL);
+    m_glfw_window = glfwCreateWindow(m_window_res.x(), m_window_res.y(), title.c_str(), NULL, NULL, NULL);
     if (m_glfw_window == NULL) {
         throw std::runtime_error("GLFW window could not be created");
     }
+    glfwMakeContextCurrent(m_glfw_window);
+#ifdef _WIN32
+    if (gl3wInit()) {
+        throw std::runtime_error("GL3W could not be initialized");
+    }
+#endif // _WIN32
     // OTHER DEBUGGING
 
     std::cout << "init window: " << title << std::endl;
 
     glfwSwapInterval(0); // Disable vsync
+    // Set Window User Pointer
+    // Set Drop Callback
+    // Set Key Callback
+    // Set Current PosCallback
+    // Set ScrollCallback
+    // Set WindowSize Callback
+    // Set framebufferSizeCallback
+    
+    // scale seems no longer valid
+    // float xscale, yscale;
+    // glfwGetWindowContentScale(m_glfw_window, &xscale, &yscale);
 
+    // IMGUI init
+
+    // render texture
+
+    // set render window 
+    m_render_window = true;
+    // second window
+#endif // NGP_GUI
 }
+
+void Testbed::destroy_window() {
+#ifndef NGP_GUI
+    throw std::runtime_error("destroy window failed: NGP was built without GUI");
+#else
+    if (!m_render_window) {
+        throw std::runtime_error("Window must be initialized before to be destroyed");
+    }
+
+    // m_render_surfaces.clear();
+    // m_render_textures.clear();
+
+    // m_pip_render_surface
+    // m_pip_render_texture
+
+    // dlss
+
+    // IMGUI
+
+    m_glfw_window = nullptr;
+    m_render_window = false;
+#endif // NGP_GUI
+}
+
+
+
 
 void glfw_error_callback(int error, const char* description) {
     // tlog::error 

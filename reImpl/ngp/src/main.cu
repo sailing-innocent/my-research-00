@@ -41,13 +41,19 @@ int main(int argc, char** argv) {
             testbed.init_window(1920, 1080, false, false);
         }
 
+        while (testbed.frame()) {
+            if (!gui) {
+                // LOG ITERATIONS ON CONSOLE
+            }
+        }
+
         // Render/Training Loop
         //  while (testbed.frame()) {
             // if no gui, log
         // }
     } catch (const exception& e) {
         // error log
-        cerr << "CATCH ERROR" <<  endl;
+        cerr << "CATCH ERROR: " << e.what() << endl;
         return 1;
     }
 }

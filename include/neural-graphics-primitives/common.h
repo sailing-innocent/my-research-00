@@ -242,6 +242,7 @@ enum class EEmaType {
 	Step,
 };
 
+// This is a timer
 class Ema {
 public:
 	Ema(EEmaType type, float half_life)

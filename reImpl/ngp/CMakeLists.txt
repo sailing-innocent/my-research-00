@@ -115,7 +115,6 @@ if (NGP_BUILD_WITH_GUI)
 		BUILD_SHARED_LIBS USE_MSVC_RUNTIME_LIBRARY_DLL
 	)
 
-
     list(APPEND NGP_INCLUDE_DIRECTORIES "${RESEARCH_ROOT_DIR}/dependencies/glfw/include" "${RESEARCH_ROOT_DIR}/dependencies/imgui")
 
     if (MSVC)
@@ -152,6 +151,7 @@ list(APPEND NGP_INCLUDE_DIRECTORIES
     # "${RESEARCH_ROOT_DIR}/dependencies/filesystem"
     # "dependencies/nanovdb"
     # "dependencies/tinylogger"
+    "E:/includes/"
 )
 
 # find_package(OpenMP)
