@@ -19,7 +19,7 @@
 
 #include <Eigen/Dense>
 
-RES_NAMESPACE_BEGIN
+NGP_NAMESPACE_BEGIN
 
 using precision_t = tcnn::network_precision_t;
 
@@ -40,6 +40,8 @@ inline __host__ __device__ float linear_to_srgb(float linear) {
     }
 }
 
+
+// linear_to_srgb_derivative
 
 // fetch the value of image in selected position 
 template <uint32_t N_DIMS, typename T>
@@ -75,3 +77,73 @@ __host__ __device__ Eigen::Matrix<float, N_DIMS, 1> read_image(const T* __restri
     );
 }
 
+// deposit_image_gradient
+
+// apply caemra distortion
+
+// iterative_camera_undistortion
+
+// pixel_to_ray_pinhole
+
+// get_xform_given_rolling_shutter
+
+// f_theta_undistortion
+
+// latlong_to_dir
+
+// pixel_to_ray
+
+// pos_to_pixel
+
+// motion_vector_3d
+
+// pixel_to_image_uv
+
+// image_uv_to_pixel
+
+// motion_vector_2d
+
+
+// fov_to_focal_length
+
+// focal_length_to_fov
+
+// to_float4
+// to_float3
+// to_float2
+// to_array4
+// to_vec4
+// to_array2
+// faceforward
+
+// from_rgba32
+
+// hsv_to_rgb
+
+// to_rgb
+
+enum class EImageDataType {
+    None,
+    Byte,
+    Half,
+    Float,
+};
+
+enum class EDepthDataType {
+    UShort,
+    Float,
+};
+
+// image_pos
+// pixel_idx
+
+// read_rgba
+
+// read_depth
+
+Eigen::Matrix<float, 3, 4> log_space_lerp(const Eigen::Matrix<float,3,4>& begin, const Eigen::Matrix<float, 3, 4>& end, float t);
+
+tcnn::GPUMemory<float> load_exr(const std::string& filename, int& width, int & height);
+tcnn::GPUMemory<float> loda_stbi(const std::string& filename, int& width, int& height);
+
+NGP_NAMESPACE_END

@@ -64,6 +64,10 @@ public:
     void destroy_window();
     bool frame();
         bool begin_frame_and_handle_user_input();
+    void redraw_next_frame() {
+        m_render_skip_due_to_lack_of_camera_movement_counter = 0;
+    }
+    // void create second window
 private:
     // Basic Window
     ETestbedMode m_testbed_mode = ETestbedMode::Nerf;
@@ -71,20 +75,64 @@ private:
     GLFWwindow* m_glfw_window = nullptr;
     bool m_render_window = false;
     std::chrono::time_point<std::chrono::steady_clock> m_last_frame_time_point;
-    
-    
+    std::shared_ptr<GLTexture> m_pip_render_texture;
+    std::vector<std::shared_ptr<GLTexture>> m_render_textures;
+
+    // TODO: render_buffer.h
+    // std::vector<CudaRenderBuffer> m_render_surfaces;
+    // std::unique_ptr<CudaRenderBuffer> m_pip_render_surface;
+
+    //TODO: shared_queue.h
+    // SharedQueue<std::unique_ptr<ICallable>> m_task_queue;
+
+
+private:
+    // Callbacks
+    std::function<bool()> m_keyboard_event_callback;
+
+private:
+    // Rendering
+    size_t m_render_skip_due_to_lack_of_camera_movement_counter = 0;
 
 private:
     // GUI
     bool m_gui_render = false;
     std::chrono::time_point<std::chrono::steady_clock> m_last_gui_draw_time_point;
-    bool m_gui_redraw = false; // REDRAW THE GUI CONTENT
-    
+    bool m_gui_redraw = true; // REDRAW THE GUI CONTENT
+    void redraw_gui_next_frame() {
+        gui_redraw = true;
+    }
+
 private:
     // Rendering/UI bookkeeping
     Ema m_training_ms = {EEmaType::Time, 100};
     Ema m_render_ms = {EEmaType::Time, 100};
     Ema m_frame_ms = {EEmaType::Time, 100};
+// NeRF
+// SDF
+// Image
+    enum EDataType {
+        Float,
+        Half,
+    };
+
+    struct Image {
+        Eigen::Vector2f pos = Eigen::Vector2f::Constant(0.0f);
+        Eigen::Vector2f prev_pos = Eigen::Vector2f::Constant(0.0f);
+        tcnn::GPUMemory<char> data;
+
+        EDataType type = EDataType::Float;
+        Eigen::Vector2i resolution = Eigen::Vector2i::Constant(0.0f);
+        
+        tcnn::GPUMemory<Eigen::Vector2f> render_coords;
+        tcnn::GPUMemory<Eigen::Array3f> render_out;
+
+        struct Training {} training = {};
+
+        ERandomMode random_mode = ERandomMode::Stratified;
+    } m_image;
+
+// VOLUME
 
 };
 

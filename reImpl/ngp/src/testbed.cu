@@ -126,7 +126,7 @@ void Testbed::init_window(int resw, int resh, bool hidden, bool second_window)
     // if not def NGP_GUI throw error
     m_window_res = { resw, resh };
     // glfw set error callback
-    // glfwSetErrorCallback(glfw_error_callback);
+    glfwSetErrorCallback(glfw_error_callback);
     // glfw init
     if (!glfwInit()) {
         throw std::runtime_error{"GLFW cound not be initialized."};
@@ -143,7 +143,9 @@ void Testbed::init_window(int resw, int resh, bool hidden, bool second_window)
     std::string title = "SIRI: Neural Graphics Primitives (";
     switch (m_testbed_mode) {
         case ETestbedMode::Image: title += "Image"; break;
-        case ETestbedMode::Nerf: title += "Nerf"; break;
+        case ETestbedMode::Nerf: title += "NeRf"; break;
+        case ETestbedMode::Sdf: title += "SDF"; break;
+        case ETestbedMode::Volume: title += "Volume"; break;
         default: title += "NOTITLE" ; break;
     }
     title += ")";
@@ -164,12 +166,38 @@ void Testbed::init_window(int resw, int resh, bool hidden, bool second_window)
 
     glfwSwapInterval(0); // Disable vsync
     // Set Window User Pointer
+    glfwSetWindowUserPointer(m_glfw_window, this);
+    
     // Set Drop Callback
+    glfwSetDropCallback(m_glfw_window, [](GLFWwindow* window, int count, const char** path) {
+        Testbed* testbed = (Testbed*)glfwGetWindowUserPointer(window);
+        if (!testbed) {
+            return;
+        }
+        //TODO testbed->redraw_gui_next_frame();
+        for (int i = 0; i < count; i++) {
+            // testbed->handle_file(paths[i])
+        }
+    })
+
     // Set Key Callback
     // Set Current PosCallback
     // Set ScrollCallback
     // Set WindowSize Callback
+    glfwSetWindowSizeCallback(m_glfw_window, [](GLFWwindow* window, int width, int height) {
+        Testbed* testbed = (Testbed*)glfwGetWindowUserPointer(window);
+        if (testbed) {
+            testbed->redraw_next_frame();
+        }
+    })
     // Set framebufferSizeCallback
+    glfwSetFramebufferSizeCallback(m_glfw_window, [](GLFWwindow* window, int width, int height) {
+        Testbed* testbed = (Testbed*)glfwGetWindowUserPointer(window);
+        if (testbed) {
+            testbed->redraw_next_frame();
+        }
+    })
+
     
     // scale seems no longer valid
     // float xscale, yscale;
@@ -178,7 +206,14 @@ void Testbed::init_window(int resw, int resh, bool hidden, bool second_window)
     // IMGUI init
 
     // render texture
-
+    //TODO: waiting for shared_queue and render_buffer 
+    /*
+    m_render_textures = { std::make_shared<GLTexture>() };
+    m_render_surfaces.clear();
+    m_render_surfaces.emplace_back(m_render_textures.front());
+    m_pip_render_texture = std::make_shared<GLTexture>();
+    m_pip_render_surface = std::make_unique<CudaRenderBuffer>(m_pip_render_texture);
+    */
     // set render window 
     m_render_window = true;
     // second window
