@@ -1,5 +1,0 @@
-#include "sail/sail.h"
-
-SAIL_NAMESPACE_BEGIN
-
-SAIL_NAMESPACE_END

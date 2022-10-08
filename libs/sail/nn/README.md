@@ -1,4 +1,4 @@
 # Sail.nn
 
-This is my self enpowered nn library
+This is my self enpowered Neural Network library
 
