@@ -12,10 +12,10 @@ class Node {
 public:
     Node(T _val): value{_val} {}
     ~Node() {}
-    T content() { return value}
+    T content() { return value; }
 private:
     T value;
-}
+};
 
 template<typename T>
 class List {

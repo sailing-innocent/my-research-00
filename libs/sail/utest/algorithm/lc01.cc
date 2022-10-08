@@ -25,3 +25,11 @@ TEST(SAIL_TEST_LC01, TWO_SUM_SUIT01) {
     vector<int> output = twoSum(nums, target);
     EXPECT_EQ(expected, output);
 }
+
+TEST(SAIL_TEST_LC01, TWO_SUM_SUIT02) {
+    vector<int> nums = {3, 2, 4};
+    int target = 6;
+    vector<int> expected = {1, 2};
+    vector<int> output = twoSum(nums, target);
+    EXPECT_EQ(expected, output);
+}
