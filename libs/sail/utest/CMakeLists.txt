@@ -19,6 +19,7 @@ enable_testing()
 
 list(APPEND LIBSAIL_INCLUDE_DIR
     "E:/includes"
+    "${PROJECT_BINARY_DIR}"
     "${PROJECT_SOURCE_DIR}/../include"
 )
 
