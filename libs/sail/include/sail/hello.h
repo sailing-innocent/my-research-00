@@ -9,6 +9,12 @@
 SAIL_NAMESPACE_BEGIN
 std::string hello();
 
+template<typename T>
+T getT() {
+    T some(0);
+    return some;
+}
+
 SAIL_NAMESPACE_END
 
 #endif

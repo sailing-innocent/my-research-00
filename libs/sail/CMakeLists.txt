@@ -1,12 +1,13 @@
 cmake_minimum_required(VERSION 3.14)
 project(libsail)
 OPTION(TEST_ENABLED "build the test suit" ON)
+OPTION(LC_TEST_ENABLED "build leetcode suit" ON)
 set(TEST_ENABLED TRUE)
+set(LC_TEST_ENABLED FALSE)
 # ALGORITHM
 
 list(APPEND LIBSAIL_SRC
-    "${PROJECT_SOURCE_DIR}/sail/core/hello.cc"
-    "${PROJECT_SOURCE_DIR}/sail/algorithm/list.cc"
+    "${PROJECT_SOURCE_DIR}/sail/hello.cc"
 )
 
 list(APPEND LIBSAIL_INCLUDE
@@ -51,6 +52,7 @@ if (TEST_ENABLED)
         $<TARGET_OBJECTS:libsail>
     )
     
+    include(GoogleTest)
     if (BASIC_TEST_ENABLED)
         list(APPEND BASIC_TEST_SOURCE
             "utest/algorithm/list.test.cc"
@@ -59,6 +61,7 @@ if (TEST_ENABLED)
         add_executable(basic_test ${BASIC_TEST_SOURCE})
         target_include_directories(basic_test PUBLIC ${LIBSAIL_TEST_INCLUDE})
         target_link_libraries(basic_test ${LIBSAIL_TEST_LIBS})
+        gtest_discover_tests(basic_test)
     endif()
     
     if (LC_TEST_ENABLED)
@@ -68,9 +71,9 @@ if (TEST_ENABLED)
         add_executable(lc_test ${LC_TEST_SOURCE})
         target_include_directories(lc_test PUBLIC ${LIBSAIL_TEST_INCLUDE})
         target_link_libraries(lc_test PRIVATE ${LIBSAIL_TEST_LIBS})
+        gtest_discover_tests(lc_test)
     endif()
     
-    include(GoogleTest)
-    gtest_discover_tests(lc_test)
+
 endif()
 

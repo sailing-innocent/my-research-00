@@ -1,3 +1,4 @@
+#pragma once
 #ifndef SAIL_COMMON
 #define SAIL_COMMON
 
