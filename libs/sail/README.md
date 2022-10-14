@@ -1,6 +1,4 @@
 # SAIL
 
-## algorithm
-
-Here is the place I learn algorithm and practise on leetcode. I will build data structures and implement classic algorithms. And Daily practise in utest
-
+## PROGRESS
+- 2022-10-14 有多少能力办多大事情，最开始的时候就不要用那些先进的设计模式。最简单的实现就好。

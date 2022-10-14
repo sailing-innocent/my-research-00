@@ -6,6 +6,7 @@ set(TEST_ENABLED TRUE)
 
 list(APPEND LIBSAIL_SRC
     "${PROJECT_SOURCE_DIR}/sail/core/hello.cc"
+    "${PROJECT_SOURCE_DIR}/sail/algorithm/list.cc"
 )
 
 list(APPEND LIBSAIL_INCLUDE
@@ -66,7 +67,7 @@ if (TEST_ENABLED)
         )
         add_executable(lc_test ${LC_TEST_SOURCE})
         target_include_directories(lc_test PUBLIC ${LIBSAIL_TEST_INCLUDE})
-        target_link_libraries(lc_test ${LIBSAIL_TEST_LIBS})
+        target_link_libraries(lc_test PRIVATE ${LIBSAIL_TEST_LIBS})
     endif()
     
     include(GoogleTest)
