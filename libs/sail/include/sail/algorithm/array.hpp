@@ -14,11 +14,11 @@ public:
     Array(Array<T>& rhs);
     Array<T>& operator=(Array<T>& rhs);
     ~Array();
-    int getSize(){return size;}
-    Node<T>& operator[](int index) {return nodes[index];}
+    int getSize(){return mSize;}
+    Node<T>& operator[](int index) {return mNodes[index];}
 private:
-    int size = 0;
-    std::array<Node<T>, SAIL_ARRAY_MAX> nodes;
+    int mSize = 0;
+    std::array<Node<T>, SAIL_ARRAY_MAX> mNodes;
 };
 
 template<typename T>
@@ -28,8 +28,8 @@ template<typename T>
 Array<T>::Array(sail::Node<T>* pNodes, int countNodes)
 {
     for (auto i = 0; i < countNodes; i++) {
-        nodes[i] = *(pNodes+i);
-        size++;
+        mNodes[i] = *(pNodes+i);
+        mSize++;
     }
 }
 
@@ -37,9 +37,9 @@ template<typename T>
 Array<T>::Array(sail::Array<T>& rhs) {
     int sz = rhs.getSize();
     for (auto i = 0; i < sz; i++) {
-        nodes[i] = rhs[i];
+        mNodes[i] = rhs[i];
     }
-    size = sz;
+    mSize = sz;
 }
 
 template<typename T>
@@ -47,9 +47,9 @@ Array<T>& Array<T>::operator=(Array<T>& rhs)
 {
     int sz = rhs.getSize();
     for (auto i = 0; i < sz; i++) {
-        nodes[i] = rhs[i];
+        mNodes[i] = rhs[i];
     }
-    size = sz;
+    mSize = sz;
 }
 
 template<typename T>

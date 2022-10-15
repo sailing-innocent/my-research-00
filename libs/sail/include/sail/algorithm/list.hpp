@@ -19,22 +19,22 @@ class ListNode : public Node<T>{
 public:
     ListNode():Node<T>() {} ;
     ListNode(ListNode<T>& rhs):Node<T>(rhs) { setNext(rhs.getNet()); setPrev(rhs.getPrev()); }
-    ListNode(T _val): Node<T>(_val) {}
+    ListNode(T _content): Node<T>(_content) {}
     ListNode<T>& operator=(ListNode<T>& rhs);
     ~ListNode() {};
-    ListNode<T>& getNext() { return next; }
-    ListNode<T>& getPrev() { return prev; }
-    bool setNext(ListNode<T>& node ) { next = node; return true; }
-    bool setPrev(ListNode<T>& node ) { prev = node; return true; }
+    ListNode<T>& getNext() { return mNext; }
+    ListNode<T>& getPrev() { return mPrev; }
+    bool setNext(ListNode<T>& node ) { mNext = node; return true; }
+    bool setPrev(ListNode<T>& node ) { mPrev = node; return true; }
 private:
-    ListNode<T>& prev();
-    ListNode<T>& next();
+    ListNode<T>& mPrev();
+    ListNode<T>& mNext();
 };
 
 template<typename T>
 ListNode<T>& operator=(ListNode<T>& rhs) 
 { 
-    content = rhs.content(); 
+    mContent = rhs.content(); 
     setNext(rhs.getNet()); 
     setPrev(rhs.getPrev()); 
     return *this; 

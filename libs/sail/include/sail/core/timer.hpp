@@ -11,6 +11,8 @@
 #define SAIL_CORE_TIMER_H_
 
 #include <sail/core.h>
+#include <ratio>
+#include <chrono>
 
 SAIL_NAMESPACE_BEGIN
 
@@ -21,22 +23,20 @@ SAIL_NAMESPACE_BEGIN
 class Timer {
 public:
     Timer();
-    float TotalTime() const;
-    float DeltaTime() const;
+    long long TotalTime() const;
+    long long DeltaTime() const;
     
     void Reset();
     void Start();
     void Stop();
     void Tick();
 private:
-    double mSecondsPerCount;
-    double mDeltaTime;
-
-    __int64 mBaseTime;
-    __int64 mPausedTime;
-    __int64 mStopTime;
-    __int64 mPrevTime;
-    __int64 mCurrTime;
+    long long mDeltaTime;
+    long long mBaseTime;
+    long long mPausedTime;
+    long long mStopTime;
+    long long mPrevTime;
+    long long mCurrTime;
 
     bool mStopped;
 };

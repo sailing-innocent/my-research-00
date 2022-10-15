@@ -9,11 +9,11 @@ SAIL_NAMESPACE_BEGIN
 template<typename T>
 class Node {
 public:
-    Node(T _val): value{_val} {}
+    Node(T _content): mContent(_content} {}
     ~Node() {}
-    T& content() { return value; }
+    T& content() { return mContent; }
 private:
-    T value;
+    T mContent;
 };
 
 SAIL_NAMESPACE_END

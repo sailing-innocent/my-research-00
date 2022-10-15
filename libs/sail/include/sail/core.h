@@ -10,4 +10,6 @@ SAIL_NAMESPACE_BEGIN
 
 SAIL_NAMESPACE_END
 
+#include <sail/core/timer.hpp>
+
 #endif
