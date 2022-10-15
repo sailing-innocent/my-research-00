@@ -3,6 +3,7 @@ project(libsail)
 OPTION(TEST_ENABLED "build the test suit" ON)
 OPTION(LC_TEST_ENABLED "build leetcode suit" ON)
 set(TEST_ENABLED TRUE)
+set(BASIC_TEST_ENABLED TRUE)
 set(LC_TEST_ENABLED FALSE)
 # ALGORITHM
 
@@ -55,8 +56,9 @@ if (TEST_ENABLED)
     include(GoogleTest)
     if (BASIC_TEST_ENABLED)
         list(APPEND BASIC_TEST_SOURCE
+            # "utest/hello_test.cc"
+            "utest/algorithm/node.test.cc"
             "utest/algorithm/list.test.cc"
-            "utest/hello_test.cc"
         )
         add_executable(basic_test ${BASIC_TEST_SOURCE})
         target_include_directories(basic_test PUBLIC ${LIBSAIL_TEST_INCLUDE})
@@ -66,7 +68,7 @@ if (TEST_ENABLED)
     
     if (LC_TEST_ENABLED)
         list(APPEND LC_TEST_SOURCE
-            "utest/algorithm/lc01.cc"
+            "utest/leetcode/lc01.cc"
         )
         add_executable(lc_test ${LC_TEST_SOURCE})
         target_include_directories(lc_test PUBLIC ${LIBSAIL_TEST_INCLUDE})
