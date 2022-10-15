@@ -22,12 +22,18 @@
 [submodule "dependencies/filesystem"]
 	path = dependencies/filesystem
 	url = git@github.com:gulrak/filesystem.git
-[submodule "libs/testbed"]
-	path = libs/testbed
-	url = github-si:sailing-innocent/testbed.git
 [submodule "dependencies/imguizmo"]
 	path = dependencies/imguizmo
 	url = git@github-si:sailing-innocent/ImGuizmo.git
 [submodule "dependencies/cutlass"]
 	path = dependencies/cutlass
 	url = git@github.com:sailing-innocent/cutlass.git
+[submodule "libs/sail"]
+	path = libs/sail
+	url = git@github-si:sailing-innocent/sail.git
+[submodule "libs/ing"]
+	path = libs/ing
+	url = git@github-si:sailing-innocent/ing.git
+[submodule "libs/cent"]
+	path = libs/cent
+	url = git@github-si:sailing-innocent/cent.git
