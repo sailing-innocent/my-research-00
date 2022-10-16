@@ -1,11 +1,6 @@
 # My Research 00
 
-This is my first research, I will firstly re-implement the instant-ngp code and then test my own idea upon it.
+## PROGRESS
 
-The main structure of this repo is a CXX CUDA workspace but will fastly re-implement some other papers/code in other languages (like python)
+- 2022-10-16 前期准备就绪，暂停C++ CUDA的全力学习，转为日常，开始使用python进行理论相关的构架，恢复时间2022-11-12
 
-## Directory Tree Structure
-
-### libs
-
-This directory contains my reusable personal library. Upon this fundation, I am going to build my own util toolkit library: SAIL
