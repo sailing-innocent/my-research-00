@@ -13,6 +13,7 @@
 
 #include <sail/common.h>
 #include <vector>
+#include <iostream>
 
 SAIL_NAMESPACE_BEGIN
 

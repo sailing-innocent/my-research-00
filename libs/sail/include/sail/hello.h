@@ -2,7 +2,7 @@
 #ifndef HELLO_H_
 #define HELLO_H_
 
-#include "common.h"
+#include "sail/common.h"
 #include <iostream>
 #include <string>
 
