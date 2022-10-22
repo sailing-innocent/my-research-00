@@ -6,9 +6,11 @@ set(TEST_ENABLED TRUE)
 set(BASIC_TEST_ENABLED TRUE)
 set(LC_TEST_ENABLED FALSE)
 # ALGORITHM
+aux_source_directory("sail/algorithm" ALGORITHM_SRC)
 
 list(APPEND LIBSAIL_SRC
     # "sail/hello.cc"
+    ${ALGORITHM_SRC}
     "sail/core/timer.cc"
 )
 
@@ -60,7 +62,9 @@ if (TEST_ENABLED)
             # "utest/hello_test.cc"
             # "utest/algorithm/node.test.cc"
             # "utest/algorithm/list.test.cc"
-            "utest/core/timer.test.cc"
+            # "utest/core/timer.test.cc"
+            # "utest/algorithm/sort.test.cc"
+            "utest/algorithm/select.test.cc"
         )
         add_executable(basic_test ${BASIC_TEST_SOURCE})
         target_include_directories(basic_test PUBLIC ${LIBSAIL_TEST_INCLUDE})

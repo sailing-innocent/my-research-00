@@ -15,7 +15,7 @@
 SAIL_NAMESPACE_BEGIN
 
 template<typename T>
-class ListNode : public Node<T>{
+class ListNode : public Node<T> {
 public:
     ListNode():Node<T>() {} ;
     ListNode(ListNode<T>& rhs):Node<T>(rhs) { setNext(rhs.getNet()); setPrev(rhs.getPrev()); }
@@ -89,4 +89,4 @@ List<T>::~List(){}
 
 SAIL_NAMESPACE_END
 
-#endif
+#endif // SAIL_ALGORITHM_LIST_T_
