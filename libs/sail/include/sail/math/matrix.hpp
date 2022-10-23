@@ -18,24 +18,24 @@ SAIL_NAMESPACE_BEGIN
 class Matrix {
 public:
     Matrix();
-    Matrix(std::vector<std::vector<double>> _mat, int _n, int _m);
+    Matrix(std::vector<double> value, int _rows, int _cols);
     Matrix(Matrix& rhs);
     Matrix& operator=(Matrix& rhs);
-    ~Vector();
+    ~Matrix();
 
-    Vector& operator[](int index); // return the ith rows
-    // How can i implement [][2] ?
+    std::vector<double>& operator[](int index);
+    Matrix& operator[](); // mat[][1] to return its 1 st column
+    const std::vector<double>& operator[](int index);
+
     Matrix& opeartor*(const Matrix& lhs, const Matrix& rhs); // mat product
     int n() { return mRows; }
     int m() { return mCols; }
 
 private:
-    int n = 0;
-    int m = 0;
-    std::vector<std::vector<double>> mValue = {}
+    int mRows = 0;
+    int mCols = 0;
+    std::vector<double> mValue = {}
 };
-
-// TODO: Mat_C: the complex expansion // maybe in complex lib
 
 SAIL_NAMESPACE_END
 

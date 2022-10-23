@@ -12,6 +12,25 @@ double select_k_max(std::vector<double> arr, size_t k, int implement) {
             res = arr[k-1];
         }
     }
+    if (implement == 1) {
+        std::vector<double> window;
+        for (size_t i = 0; i < k; i++) {
+            window[i] = arr[i];
+        }
+        bubble_sort_d(window);
+        for (size_t i = k; i < arr.size(); i++) {
+            size_t j = k-1;
+            if (window[j] <= arr[i]) {
+                window[j] = arr[i];
+                continue;
+            }
+            while (window[j] > arr[i] && j >= 0) {
+                j--;
+            }
+            window[j] = arr[i];
+        }
+        res = window[k-1];
+    }
 
     return res;
 }

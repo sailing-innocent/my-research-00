@@ -49,6 +49,8 @@ if (TEST_ENABLED)
     list(APPEND LIBSAIL_TEST_INCLUDE
         ${LIBSAIL_INCLUDE}
         "E:/includes"
+        # EIGEN
+        "E:/libs/eigen/"
     )
 
     list(APPEND LIBSAIL_TEST_LIBS
@@ -64,7 +66,8 @@ if (TEST_ENABLED)
             # "utest/algorithm/list.test.cc"
             # "utest/core/timer.test.cc"
             # "utest/algorithm/sort.test.cc"
-            "utest/algorithm/select.test.cc"
+            # "utest/algorithm/select.test.cc"
+            "utest/dependencies/eigen_basic.test.cc"
         )
         add_executable(basic_test ${BASIC_TEST_SOURCE})
         target_include_directories(basic_test PUBLIC ${LIBSAIL_TEST_INCLUDE})
