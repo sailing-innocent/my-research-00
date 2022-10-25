@@ -1,33 +1,3 @@
-[submodule "dependencies/eigen"]
-	path = dependencies/eigen
-	url = git@github.com:sailing-innocent/eigen.git
-[submodule "dependencies/DLSS"]
-	path = dependencies/DLSS
-	url = git@github.com:sailing-innocent/DLSS.git
-[submodule "dependencies/imgui"]
-	path = dependencies/imgui
-	url = git@github.com:sailing-innocent/imgui.git
-[submodule "dependencies/args"]
-	path = dependencies/args
-	url = git@github.com:sailing-innocent/args.git
-[submodule "dependencies/tiny-cuda-nn"]
-	path = dependencies/tiny-cuda-nn
-	url = git@github.com:sailing-innocent/tiny-cuda-nn.git
-[submodule "dependencies/glfw"]
-	path = dependencies/glfw
-	url = git@github.com:sailing-innocent/glfw.git
-[submodule "dependencies/pybind11"]
-	path = dependencies/pybind11
-	url = git@github.com:sailing-innocent/pybind11.git
-[submodule "dependencies/filesystem"]
-	path = dependencies/filesystem
-	url = git@github.com:gulrak/filesystem.git
-[submodule "dependencies/imguizmo"]
-	path = dependencies/imguizmo
-	url = git@github-si:sailing-innocent/ImGuizmo.git
-[submodule "dependencies/cutlass"]
-	path = dependencies/cutlass
-	url = git@github.com:sailing-innocent/cutlass.git
 [submodule "libs/sail"]
 	path = libs/sail
 	url = git@github-si:sailing-innocent/sail.git
