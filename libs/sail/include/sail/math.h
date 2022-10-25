@@ -14,10 +14,19 @@
 #include <sail/common.h>
 #include <vector>
 #include <iostream>
+#include <Eigen/Core>
+#include <Eigen/Dense>
+
 
 SAIL_NAMESPACE_BEGIN
 
 #define MAX_ARRAY_BUFSZ 10000
+
+enum SDataType {
+    INT = 1;
+    DOUBLE = 2;
+    UINT8 = 3;
+}
 
 SAIL_NAMESPACE_END
 

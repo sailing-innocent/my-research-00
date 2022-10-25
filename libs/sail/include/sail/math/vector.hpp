@@ -13,7 +13,8 @@
 
 SAIL_NAMESPACE_BEGIN
 
-class Vector {
+class Vector
+{
 public:
     Vector();
     Vector(std::vector<double> _vec, int _size);

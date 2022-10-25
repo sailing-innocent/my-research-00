@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 #include <Eigen/Core>
+#include <Eigen/Dense>
 
 using namespace Eigen;
 

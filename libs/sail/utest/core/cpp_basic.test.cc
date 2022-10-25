@@ -31,5 +31,17 @@ TEST(SAIL_TEST_CORE, CPP_BASIC_DERIVE)
 {
     Derived d;
     EXPECT_EQ(d.func2(), 4);
-    EXPECT_EQ(d.func1(), 7);
+    EXPECT_EQ(d.func1(), 8);
+}
+
+TEST(SAIL_TEST_CORE, CPP_BASIC_ENUM)
+{
+    enum TENUM {
+        ONE = 1,
+        TWO = 2
+    };
+    TENUM te = ONE;
+    EXPECT_EQ(te, 1);
+    // te = TWO;
+    // EXPECT_EQ(te, 1);
 }
