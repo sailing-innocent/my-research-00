@@ -14,78 +14,56 @@
 
 SAIL_NAMESPACE_BEGIN
 
-template<typename T>
-class ListNode : public Node<T> {
+template <typename T>
+class ListNode: public Node<T>
+{
 public:
-    ListNode():Node<T>() {} ;
-    ListNode(ListNode<T>& rhs):Node<T>(rhs) { setNext(rhs.getNet()); setPrev(rhs.getPrev()); }
-    ListNode(T _content): Node<T>(_content) {}
-    ListNode<T>& operator=(ListNode<T>& rhs);
-    ~ListNode() {};
-    ListNode<T>& getNext() { return mNext; }
-    ListNode<T>& getPrev() { return mPrev; }
-    bool setNext(ListNode<T>& node ) { mNext = node; return true; }
-    bool setPrev(ListNode<T>& node ) { mPrev = node; return true; }
-private:
-    ListNode<T>& mPrev();
-    ListNode<T>& mNext();
+    ListNode() {}
+    ListNode(T _content): Node(_content) {}
+    const ListNode<T>& prev() const { return *mpPrev; }
+    const ListNode<T>& next() const { return *mpNext; }
+    bool setPrev(ListNode<T>& _prev) { mpPrev = &_prev; return true; }
+    bool setNext(ListNode<T>& _next) { mpNext = &_next; return true; }
+protected:
+    ListNode<T>* mpPrev = nullptr;
+    ListNode<T>* mpNext = nullptr;
+};
+
+template <typename T>
+class LinkList: public Node<std::vector<ListNode<T>>>
+{
+public:
+    LinkList() = default;
+    LinkList(std::vector<ListNode<T>>& vec)
+    {
+        setContent(vec);
+    }
+    bool setContent(std::vector<ListNode<T>>& vec);
 };
 
 template<typename T>
-ListNode<T>& operator=(ListNode<T>& rhs) 
-{ 
-    mContent = rhs.content(); 
-    setNext(rhs.getNet()); 
-    setPrev(rhs.getPrev()); 
-    return *this; 
-}
-
-
-/*
-template<typename T>
-class List {
-public:
-    List();
-    List(List<T>& rhs);
-    List<T>& operator=(List<T>& rhs);
-    ~List();
-    std::vector<sail::Node<T>> getNodes() { return nodes; };
-    bool addNode(sail::Node<T>& node);
-    int getSize() { return size; }
-    Node<T>& operator[](int index) { return nodes[i]; }
-private:
-    int size = 0;
-    ListNode<T>& head();
-    std::vector<sail::Node<T>> nodes = {};
-};
-
-template<typename T>
-List<T>::List() {}
-
-template<typename T>
-bool List<T>::addNode(sail::Node<T>& node) {
-    nodes.push_back(node);
-    size++;
+bool LinkList<T>::setContent(std::vector<ListNode<T>>& vec) {
+    size_t len = vec.size();
+    mContent.resize(len);
+    std::cout << "constructing linklist of size " << len << std::endl;
+    if (len < 2) { 
+        return true; 
+    }
+    for (auto i = 0; i < len; i++) {
+        mContent[i].setContent(vec[i].content());
+    }
+    for (auto i = 0; i < len; i++) {
+        if ( i == 0 ) {
+            mContent[i].setNext(mContent[i+1]);
+        } else if ( i == len-1 ) {
+            mContent[i].setPrev(mContent[i-1]);
+        } else {
+            mContent[i].setNext(mContent[i+1]);
+            mContent[i].setPrev(mContent[i-1]);
+        }
+    }
     return true;
 }
-
-template<typename T>
-List<T>::List(List<T>& rhs) {
-    for (auto item: rhs.getNodes()) {
-        addNode(item);
-    }
-}
-
-template<typename T>
-List<T>& List<T>::operator=(List<T>& rhs) {
-    List lst<T>(rhs);
-    return lst;
-}
-
-template<typename T>
-List<T>::~List(){}
-
-*/
 
 SAIL_NAMESPACE_END
 

@@ -10,8 +10,8 @@ SAIL_NAMESPACE_BEGIN
 
 SAIL_NAMESPACE_END
 
-// #include <sail/algorithm/common/node.hpp>
-// #include <sail/algorithm/common/list.hpp>
+#include <sail/algorithm/common/node.hpp>
+#include <sail/algorithm/common/list.hpp>
 // #include <sail/algorithm/common/array.hpp>
 
 #endif

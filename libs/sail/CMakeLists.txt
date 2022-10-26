@@ -3,8 +3,8 @@ project(libsail)
 
 set(TEST_ENABLED TRUE)
 set(BASIC_TEST_ENABLED FALSE)
-set(DEPS_TEST_ENABLED TRUE)
-set(ALGORITHM_TEST_ENABLED FALSE)
+set(DEPS_TEST_ENABLED FALSE)
+set(ALGORITHM_TEST_ENABLED TRUE)
 set(LC_TEST_ENABLED FALSE)
 # ALGORITHM
 aux_source_directory("sail/algorithm" ALGORITHM_SRC)
@@ -16,11 +16,11 @@ list(APPEND LIBSAIL_SRC
 )
 
 list(APPEND LIBSAIL_INCLUDE
-    "${PROJECT_SOURCE_DIR}/include"
+    "include"
 )
 
 list(APPEND LIBSAIL_DEP_LIBS
-    fmtd
+    #fmtd
 )
 list(APPEND LIBSAIL_DEP_DIRS
     "E:/libs/fmt"
@@ -66,16 +66,11 @@ if (TEST_ENABLED)
         ${LIBSAIL_DEP_DIRS}
     )
 
-    
     include(GoogleTest)
 
     if (${BASIC_TEST_ENABLED})
         list(APPEND BASIC_TEST_SOURCE
             # "utest/hello_test.cc"
-            # "utest/algorithm/node.test.cc"
-            # "utest/algorithm/list.test.cc"
-            # "utest/algorithm/sort.test.cc"
-            # "utest/algorithm/select.test.cc"
             # "utest/core/timer.test.cc"
             # "utest/core/cpp_basic.test.cc"
             "utest/core/cpp_macro.test.cc"
@@ -85,6 +80,19 @@ if (TEST_ENABLED)
         target_include_directories(basic_test PUBLIC ${LIBSAIL_TEST_INCLUDE})
         target_link_libraries(basic_test ${LIBSAIL_TEST_LIBS})
         gtest_discover_tests(basic_test)
+    endif()
+
+    if (${ALGORITHM_TEST_ENABLED})
+        list(APPEND ALGORITHM_TEST_SOURCE
+            "utest/algorithm/node.test.cc"
+            "utest/algorithm/list.test.cc"
+            # "utest/algorithm/sort.test.cc"
+            # "utest/algorithm/select.test.cc"
+        )
+        add_executable(algo_test ${ALGORITHM_TEST_SOURCE})
+        target_include_directories(algo_test PUBLIC ${LIBSAIL_TEST_INCLUDE})
+        target_link_libraries(algo_test ${LIBSAIL_TEST_LIBS})
+        gtest_discover_tests(algo_test)
     endif()
 
     if (${DEPS_TEST_ENABLED})
