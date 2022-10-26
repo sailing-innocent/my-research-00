@@ -12,6 +12,7 @@ SAIL_NAMESPACE_END
 
 #include <sail/algorithm/common/node.hpp>
 #include <sail/algorithm/common/list.hpp>
+#include <sail/algorithm/double/dlist.hpp>
 // #include <sail/algorithm/common/array.hpp>
 
 #endif
