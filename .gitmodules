@@ -1,9 +1,9 @@
-[submodule "libs/sail"]
-	path = libs/sail
-	url = git@github-si:sailing-innocent/sail.git
 [submodule "libs/ing"]
 	path = libs/ing
 	url = git@github-si:sailing-innocent/ing.git
 [submodule "libs/cent"]
 	path = libs/cent
 	url = git@github-si:sailing-innocent/cent.git
+[submodule "libs/sail"]
+	path = libs/sail
+	url = git@github-si:sailing-innocent/sail.git
