@@ -11,6 +11,9 @@
 #include <sail/math/geometry.h>
 #include <ing/app/vk_canvas.hpp>
 
+const std::string vertShaderPath = "E:/assets/shaders/canvas/vert.spv";
+const std::string fragShaderPath = "E:/assets/shaders/canvas/frag.spv";
+
 int main() { 
     sail::point p1(-0.5, 0.0, 0.0, 1.0);
     sail::point p2(0.5, 0.0, 0.0, 1.0);
@@ -33,7 +36,7 @@ int main() {
     std::cout << std::endl;
 */
 
-    ing::CanvasApp app;
+    ing::CanvasApp app(vertShaderPath, fragShaderPath);
 
     if (!app.setVertex(vf, vf.size())) {
         std::cout << "Init Vertices Failed~" << std::endl;

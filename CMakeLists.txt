@@ -41,7 +41,7 @@ if (${PLANE_DRAW})
         "glfw3"
         "vulkan-1"
         "libsail" 
-        "ing"
+        "libing"
     )
 
     list(APPEND DRAW_SOURCE
