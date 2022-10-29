@@ -35,6 +35,7 @@ if (${PLANE_DRAW})
         "E:/libs/eigen/"
         "E:/sdk/Vulkan/Include"
         "E:/includes"
+        "include"
     )
 
     list(APPEND DRAW_LIBS
@@ -46,6 +47,7 @@ if (${PLANE_DRAW})
 
     list(APPEND DRAW_SOURCE
         "src/plane_draw.cc"
+        "src/missions/mis01.cc"
     )
     add_executable(draw ${DRAW_SOURCE})
     target_link_directories(draw PUBLIC ${DRAW_LIBS_DIR})
