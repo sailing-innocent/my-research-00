@@ -10,7 +10,8 @@
 #include <mission.h>
 
 int main() { 
-    int res = drawTriangle();
+    // int res = drawTriangle();
+    int res = drawRect2D();
     return res;
 }
 

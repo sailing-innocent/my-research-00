@@ -43,6 +43,12 @@ int drawRect2D() {
     std::vector<uint16_t> iu;
     vn.genING(vf, iu);
 
+    std::cout << "["; 
+    for (auto i: iu) {
+        std::cout << i << ",";
+    }
+    std::cout << "]" << std::endl;
+    // iu[5] = 3;
     ing::CanvasApp app(vertShaderPath, fragShaderPath);
 
     if (!app.setVertex(vf, vf.size())) {
