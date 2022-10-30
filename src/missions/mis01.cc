@@ -1,5 +1,46 @@
 #include <mission.h>
 
+int drawHistogram() {
+    std::vector<float> test{1.0f, 3.0f, 2.0f, 4.0f, 1.0f};
+    sail::Histogram2D his(test, 5.0f, 0.0f);
+    sail::VisNode vn;
+    his.draw(vn);
+    std::vector<float> vf;
+    std::vector<uint16_t> iu;
+    vn.genING(vf, iu);
+    std::cout << "iu: ["; 
+    for (auto i: iu) {
+        std::cout << i << ",";
+    }
+    std::cout << "]" << std::endl;
+    std::cout << "vf: ["; 
+    for (auto i: vf) {
+        std::cout << i << ",";
+    }
+    std::cout << "]" << std::endl;
+
+    ing::CanvasApp app(vertShaderPath, fragShaderPath);
+
+    if (!app.setVertex(vf, vf.size())) {
+        std::cout << "Init Vertices Failed~" << std::endl;
+    }
+    if (!app.setIndex(iu, iu.size())) {
+        std::cout << "Init Indices Failed" << std::endl;
+    }
+
+    
+    try {
+        app.init();
+        app.run();
+        app.terminate();
+    } catch (const std::exception& e) {
+        std::cerr << e.what() << std::endl;
+        return EXIT_FAILURE;
+    }
+    return 0;
+}
+
+
 int drawTriangle() {
     sail::point p1(-0.5, 0.0, 0.0, 1.0);
     sail::point p2(0.5, 0.0, 0.0, 1.0);

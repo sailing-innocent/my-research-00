@@ -11,7 +11,8 @@
 
 int main() { 
     // int res = drawTriangle();
-    int res = drawRect2D();
+    // int res = drawRect2D();
+    int res = drawHistogram();
     return res;
 }
 
