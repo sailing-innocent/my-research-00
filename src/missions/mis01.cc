@@ -1,8 +1,14 @@
 #include <mission.h>
 
-int drawHistogram() {
-    std::vector<float> test{1.0f, 3.0f, 2.0f, 4.0f, 1.0f};
-    sail::Histogram2D his(test, 5.0f, 0.0f);
+int drawHistogram(std::vector<float>& data) {
+    if (data.size() == 0) { return -1; }
+    auto _min = data[0];
+    auto _max = data[0];
+    for (auto item: data) {
+        if (_min > item) { _min = item; }
+        if (_max < item) { _max = item; }
+    }
+    sail::Histogram2D his(data, _max, _min);
     sail::VisNode vn;
     his.draw(vn);
     std::vector<float> vf;

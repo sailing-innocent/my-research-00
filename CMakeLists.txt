@@ -48,6 +48,7 @@ if (${PLANE_DRAW})
     list(APPEND DRAW_SOURCE
         "src/plane_draw.cc"
         "src/missions/mis01.cc"
+        "src/missions/mis02.cc"
     )
     add_executable(draw ${DRAW_SOURCE})
     target_link_directories(draw PUBLIC ${DRAW_LIBS_DIR})
